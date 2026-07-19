@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Player Stats</title>
+        <style>
+            .buttons-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                flex-wrap: wrap;
+                margin-top: 20px; }
+    body {
+        background-image: url('bk.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        margin: 0;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        color: #EFE6DE; 
+        font-family: monospace; 
+    }
+
+    #status {
+        background-color: rgba(10, 10, 12, 0.85);
+        padding: 30px;
+        border-radius: 8px;
+        border: 2px solid #FFECD1;
+        box-shadow: 0 0 15px #00182c;
+        text-align: center;
+    }
+
+    button {
+
+        background: black;
+        color: #EFE6DE;
+        border: 1px solid #3E000C;
+        padding: 10px;
+        margin: 5px;
+        cursor: pointer;
+    }
+        </style>
+
+    </head>
+    <body>
+        <div id="status">
+            <h2>///PLAYER STATS ///</h2>
+            <p id="stats-display">Loading data...</p>
+        </div>
+        <div class="buttons-container">
+        <button onclick="updateStats('sleep'); renderStats();">  sleep</button> <br>
+        <button onclick="updateStats('stats'); renderStats();">Show Stats</button><br>
+        <button onclick="localStorage.clear(); stats = { days: 1000, weeks: 0, tasks: 0, sleep: 0 }; renderStats();">Reset Stats</button>
+        <button onclick="updateStats('day'); renderStats();">day</button><br>
+        <button onclick="updateStats('tasks'); renderStats();">Complete Task</button><br>
+        </div>
+        <script>
+            let stats;
+            if  (localStorage.getItem('stats')) {
+                stats = JSON.parse(localStorage.getItem('stats'));
+            } else {
+                stats = {
+                    days: 952,
+                    weeks: 0,
+                    tasks: 0,
+                    sleep: 0,
+                };
+            }
+            function updateStats(stat) {
+                if (stat === 'day') {
+                    stats.days -= 1;
+                } else if (stat === 'tasks') {
+                    stats.tasks += 1;
+                } else if (stat === 'sleep') {
+                    stats.sleep += 1;
+                }
+                localStorage.setItem('stats', JSON.stringify(stats));
+            }
+            function renderStats() {
+                let statsDisplay = document.getElementById('stats-display');
+                statsDisplay.innerHTML = `
+                    Days: ${stats.days}<br>
+                    Weeks: ${stats.weeks = Math.floor(stats.days / 7)}<br>
+                    Tasks Completed: ${stats.tasks}<br>
+                    Sleep Hours: ${stats.sleep}
+                `;
+            }
+
+        </script>
+    </body>
+</html>
