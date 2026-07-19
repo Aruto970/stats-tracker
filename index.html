@@ -2,9 +2,12 @@
 <html lang="en">
     <head>
         <title>Player Stats</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             .buttons-container {
                 display: flex;
+                gap: 10px;
+                width: 90%;
                 flex-direction: column;
                 align-items: center;
                 flex-wrap: wrap;
@@ -16,22 +19,23 @@
         background-repeat: no-repeat;
         height: 100vh;
         margin: 0;
-        
+        flex-direction: column;
         display: flex;
         justify-content: center;
         align-items: center;
-        
         color: #EFE6DE; 
         font-family: monospace; 
     }
 
     #status {
         background-color: rgba(10, 10, 12, 0.85);
-        padding: 30px;
+        padding: 20px;
         border-radius: 8px;
         border: 2px solid #FFECD1;
         box-shadow: 0 0 15px #00182c;
         text-align: center;
+        max-width: 400px;
+        width: 80%;
     }
 
     button {
